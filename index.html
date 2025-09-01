@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Farwa Arshad — Software Engineer (Frontend • QA)</title>
+  <meta name="description" content="Portfolio of Farwa Arshad — Software Engineer focusing on Frontend, QA, and Mobile (Flutter/React Native)." />
+  <style>
+    /* ------------------ CSS RESET ------------------ */
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, p, ul, ol, li, figure { margin: 0; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; }
+    button { cursor: pointer; }
+
+    /* ------------------ THEME ------------------ */
+    :root {
+  --bg: #3e2723;          /* dark brown */
+  --panel: #4e342e;       /* medium brown */
+  --text: #f5f5dc;        /* beige text */
+  --muted: #d7ccc8;       /* light taupe */
+  --brand: #d7b899;       /* light beige accent */
+  --brand-2: #bcaaa4;     /* secondary beige */
+  --accent: #efebe9;      /* soft cream */
+  --card: #5d4037;        /* card brown */
+  --border: #6d4c41;      /* brown border */
+  --shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+html[data-theme="light"] {
+  --bg: #eff5dc;          /* beige background */
+  --panel: #ffffff;       /* white panels */
+  --text: #3e2723;        /* dark brown text */
+  --muted: #6d4c41;       /* muted brown */
+  --brand: #8d6e63;       /* accent brown */
+  --brand-2: #a1887f;     /* lighter accent */
+  --accent: #795548;      /* deep brown */
+  --card: #ffffff;        /* light card */
+  --border: #d7ccc8;      /* beige border */
+  --shadow: 0 10px 30px rgba(62,39,35,0.15);
+}
+
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Cantarell, Noto Sans, Ubuntu, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(160deg, var(--bg), var(--panel));
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container { width: min(1100px, 92%); margin-inline: auto; }
+
+    /* ------------------ NAV ------------------ */
+    header { position: sticky; top: 0; z-index: 100; backdrop-filter: saturate(1.2) blur(8px); background: color-mix(in hsl, var(--panel) 92%, transparent); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 15%, transparent); }
+    .nav a { color: var(--text); font-weight: 600; }
+    .nav-links { display: flex; align-items: center; gap: 1.2rem; }
+    .nav-btns { display: flex; align-items: center; gap: .6rem; }
+    .btn, .chip { display: inline-flex; align-items: center; gap: .5rem; padding: .6rem .9rem; border: 1px solid var(--border); border-radius: 999px; background: linear-gradient(180deg, var(--panel), color-mix(in hsl, var(--panel) 80%, black)); color: var(--text); box-shadow: var(--shadow); transition: transform .15s ease, border-color .15s ease; }
+    .btn:hover { transform: translateY(-1px); border-color: color-mix(in hsl, var(--brand) 50%, var(--border)); }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; border-color: transparent; }
+    .btn.ghost { background: transparent; }
+    .menu { display: none; }
+
+    /* ------------------ HERO ------------------ */
+    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; padding: 60px 0; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow .spark { width: 8px; height: 8px; border-radius: 2px; background: linear-gradient(135deg, var(--brand), var(--accent)); box-shadow: 0 0 0 4px color-mix(in hsl, var(--accent) 18%, transparent); }
+    h1 { font-size: clamp(2rem, 3.6vw + 1rem, 3.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+    .lead { font-size: clamp(1rem, 1.1vw + .8rem, 1.2rem); color: var(--muted); margin-top: .9rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.2rem; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.8rem; }
+    .stat { padding: 1rem; border: 1px solid var(--border); border-radius: 14px; background: var(--card); text-align: center; }
+    .stat b { font-size: 1.2rem; }
+
+    /* ------------------ SECTIONS ------------------ */
+    section { padding: 54px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 18px; gap: 1rem; }
+    .section-head h2 { font-size: clamp(1.4rem, 1.8vw + 1rem, 2rem); }
+    .muted { color: var(--muted); }
+
+    /* ------------------ SKILLS ------------------ */
+    .skills { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .chip { background: color-mix(in hsl, var(--panel) 60%, var(--card)); border-color: var(--border); }
+
+    /* ------------------ PROJECTS ------------------ */
+    .filters { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .card { grid-column: span 6; border: 1px solid var(--border); border-radius: 16px; background: var(--card); padding: 1rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .6rem; }
+    .card h3 { font-size: 1.1rem; }
+    .meta { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .2rem; }
+
+    /* ------------------ EDUCATION ------------------ */
+    .edu { border: 1px solid var(--border); border-radius: 14px; padding: 1rem; background: var(--card); }
+    .edu + .edu { margin-top: .8rem; }
+
+    /* ------------------ CONTACT ------------------ */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact .info { border: 1px solid var(--border); border-radius: 14px; background: var(--card); padding: 1rem; }
+    .contact form { border: 1px solid var(--border); border-radius: 14px; background: var(--card); padding: 1rem; }
+    label { font-size: .9rem; color: var(--muted); display: block; margin: .5rem 0 .25rem; }
+    input, textarea { width: 100%; padding: .75rem .9rem; border: 1px solid var(--border); background: color-mix(in hsl, var(--panel) 70%, var(--card)); color: var(--text); border-radius: 10px; }
+    textarea { min-height: 120px; }
+
+    /* ------------------ FOOTER ------------------ */
+    footer { padding: 32px 0 60px; color: var(--muted); text-align: center; }
+
+    /* ------------------ RESPONSIVE ------------------ */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; }
+      .card { grid-column: span 12; }
+      .menu { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 58px; right: 4%; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: .6rem; width: 260px; }
+      .nav-links.open { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="Home">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Farwa&nbsp;Arshad</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-btns">
+        <button class="btn ghost" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="btn menu" id="menuBtn" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="introTitle">
+      <div>
+        <span class="eyebrow"><span class="spark"></span> Software Engineer</span>
+        <h1 id="introTitle">Frontend • QA • Mobile</h1>
+        <p class="lead">I craft clean, accessible UIs and test them thoroughly. Comfortable with Flutter and React Native for mobile, plus Java on the backend. Passionate about documentation and collaborative workflows.</p>
+        <div class="hero-cta">
+          <!-- Place your CV file as CV.pdf in the same folder -->
+          <a class="btn primary" href="CV.pdf" download>⬇️ Download CV</a>
+          <a class="btn" href="mailto:farwaarshad576@gmail.com">✉️ Email Me</a>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/farwa-arshad-12a76b33b/">in LinkedIn</a>
+        </div>
+        <div class="stats" aria-label="Quick stats">
+          <div class="stat"><b>Frontend</b><div class="muted">HTML • CSS • JS</div></div>
+          <div class="stat"><b>Mobile</b><div class="muted">Flutter • React Native</div></div>
+          <div class="stat"><b>QA & Docs</b><div class="muted">Testing • SRS • Use‑cases</div></div>
+        </div>
+      </div>
+      <aside aria-label="Contact details">
+        <div class="edu">
+          <h3 style="margin-bottom:.2rem;">Based in Gujranwala, PK</h3>
+          <p class="muted">Open to Remote/Hybrid roles</p>
+          <div class="tags" style="margin-top:.6rem;">
+            <span class="chip">📧 farwaarshad576@gmail.com</span>
+            <span class="chip">📞 0332‑8336517</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skillsTitle">
+      <div class="section-head">
+        <h2 id="skillsTitle">Skills</h2>
+        <p class="muted">Core stack & tools I use</p>
+      </div>
+      <div class="skills">
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">React Native</span>
+        <span class="chip">Flutter</span>
+        <span class="chip">Java (Core • OOP)</span>
+        <span class="chip">Unity (2D/3D)</span>
+        <span class="chip">Software Testing</span>
+        <span class="chip">Technical Documentation</span>
+        <span class="chip">Figma</span>
+        <span class="chip">Jira</span>
+        <span class="chip">Postman</span>
+        <span class="chip">VS Code</span>
+        <span class="chip">Balsamiq</span>
+        <span class="chip">Android Studio</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projectsTitle">
+      <div class="section-head">
+        <h2 id="projectsTitle">Projects</h2>
+        <div class="filters" role="tablist" aria-label="Project filters">
+          <button class="btn ghost" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="btn ghost" data-filter="frontend" role="tab">Frontend</button>
+          <button class="btn ghost" data-filter="mobile" role="tab">Mobile</button>
+          <button class="btn ghost" data-filter="backend" role="tab">Backend</button>
+          <button class="btn ghost" data-filter="docs" role="tab">Docs</button>
+          <button class="btn ghost" data-filter="game" role="tab">Game</button>
+        </div>
+      </div>
+
+      <div class="grid" id="projectGrid">
+        <!-- Taskify -->
+        <article class="card" data-tags="mobile backend frontend">
+          <div class="meta muted">Flutter • Node.js</div>
+          <h3>Taskify — Flexible Service & Task Management</h3>
+          <p>Mobile app where customers post tasks and connect with multiple middlemen. Real‑time matching and structured feedback.</p>
+          <div class="tags">
+            <span class="chip">Flutter</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">MongoDB</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#" aria-disabled="true">Live demo</a>
+            <a class="btn" href="#" aria-disabled="true">Source</a>
+          </div>
+        </article>
+
+        <!-- Debt Run -->
+        <article class="card" data-tags="game">
+          <div class="meta muted">Unity 3D • Mixamo</div>
+          <h3>Debt Run — 3D Game</h3>
+          <p>Endless‑runner style 3D game using Unity assets and Mixamo animations. Designed gameplay loops and level tuning.</p>
+          <div class="tags">
+            <span class="chip">Unity</span>
+            <span class="chip">C#</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#" aria-disabled="true">Gameplay</a>
+            <a class="btn" href="#" aria-disabled="true">Source</a>
+          </div>
+        </article>
+
+        <!-- Food Ordering App -->
+        <article class="card" data-tags="mobile frontend">
+          <div class="meta muted">React Native (Expo)</div>
+          <h3>Food Ordering App</h3>
+          <p>React Native app prototype with restaurant listings, cart flow, and simple checkout UX.</p>
+          <div class="tags">
+            <span class="chip">React Native</span>
+            <span class="chip">Expo</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#" aria-disabled="true">Demo</a>
+            <a class="btn" href="#" aria-disabled="true">Source</a>
+          </div>
+        </article>
+
+        <!-- Evento Docs -->
+        <article class="card" data-tags="docs">
+          <div class="meta muted">Requirements • Design • Testing</div>
+          <h3>Evento — Event Management (Docs)</h3>
+          <p>Complete SDLC documentation including SRS, use cases, architecture diagrams, and test strategy.</p>
+          <div class="tags">
+            <span class="chip">SRS</span>
+            <span class="chip">Use Cases</span>
+            <span class="chip">Test Plan</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#" aria-disabled="true">View docs</a>
+          </div>
+        </article>
+
+        <!-- Online Voting Docs -->
+        <article class="card" data-tags="docs backend">
+          <div class="meta muted">Specs • Workflows • Diagrams</div>
+          <h3>Online Voting System (Docs)</h3>
+          <p>System specifications and workflow diagrams focusing on authentication, ballot integrity, and auditability.</p>
+          <div class="tags">
+            <span class="chip">Specifications</span>
+            <span class="chip">Workflows</span>
+            <span class="chip">Diagrams</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#" aria-disabled="true">View docs</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" aria-labelledby="eduTitle">
+      <div class="section-head">
+        <h2 id="eduTitle">Education</h2>
+        <p class="muted">Academic background</p>
+      </div>
+      <div class="edu">
+        <b>Bachelor of Software Engineering</b>
+        <div class="muted">GIFT University, 2021–2025</div>
+      </div>
+      <div class="edu">
+        <b>Intermediate (Pre‑Engineering)</b>
+        <div class="muted">Army Public School & College, 2019–2021</div>
+      </div>
+      <div class="edu">
+        <b>Matriculation (Science)</b>
+        <div class="muted">Army Public School & College, 2017–2019</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contactTitle">
+      <div class="section-head">
+        <h2 id="contactTitle">Contact</h2>
+        <p class="muted">Let’s build something!</p>
+      </div>
+      <div class="contact">
+        <div class="info">
+          <p><b>Email:</b> <a href="mailto:farwaarshad576@gmail.com">farwaarshad576@gmail.com</a></p>
+          <p><b>Phone:</b> <a href="tel:+923328336517">+92 332 8336517</a></p>
+          <p><b>LinkedIn:</b> <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/farwa-arshad-12a76b33b/">/in/farwa-arshad-12a76b33b</a></p>
+          <p class="muted" style="margin-top:.6rem">I respond within 24–48 hours.</p>
+        </div>
+        <form action="mailto:farwaarshad576@gmail.com" method="post" enctype="text/plain">
+          <label for="name">Your name</label>
+          <input id="name" name="Name" type="text" placeholder="Jane Doe" required />
+          <label for="email">Your email</label>
+          <input id="email" name="Email" type="email" placeholder="jane@example.com" required />
+          <label for="msg">Message</label>
+          <textarea id="msg" name="Message" placeholder="Hi Farwa, I’d like to discuss…" required></textarea>
+          <div class="hero-cta" style="margin-top:.6rem">
+            <button class="btn primary" type="submit">Send</button>
+            <button class="btn" type="reset">Reset</button>
+          </div>
+          <p class="muted" style="margin-top:.6rem">Tip: For production, use a real form backend (Formspree, Netlify Forms, etc.).</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Farwa Arshad — Built with HTML, CSS, and JS.</div>
+  </footer>
+
+  <script>
+    // ---------- Mobile menu toggle ----------
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+    }
+
+    // ---------- Theme toggle (persisted) ----------
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+    const setIcon = () => {
+      const dark = root.getAttribute('data-theme') !== 'light';
+      themeToggle.textContent = dark ? '🌙' : '☀️';
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+    setIcon();
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      setIcon();
+    });
+
+    // ---------- Project filter ----------
+    const filterBtns = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('#projectGrid .card');
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      const key = btn.dataset.filter;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(' ');
+        card.style.display = (key === 'all' || tags.includes(key)) ? '' : 'none';
+      });
+    }));
+
+    // ---------- Year ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
